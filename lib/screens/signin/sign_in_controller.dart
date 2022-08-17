@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:thunderapp/screens/screens_index.dart';
@@ -7,7 +6,7 @@ import 'sign_in_repository.dart';
 
 enum SignInStatus {
   done,
-  error, 
+  error,
   loading,
   idle,
 }
@@ -18,24 +17,33 @@ class SignInController with ChangeNotifier {
   String? password;
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  String? errorMessage;
+
   TextEditingController get emailController => _emailController;
   TextEditingController get passwordController => _passwordController;
-var status = SignInStatus.idle;
-  void signIn(BuildContext context) async{
+  var status = SignInStatus.idle;
+  void signIn(BuildContext context) {
     try {
       _repository.signIn(
-        email: email!,
-        password: password!,
-        onSuccess: (){
-          print('success');
-          // status = SignInStatus.done;
-          // notifyListeners();
-          // Navigator.pushNamed(context, Screens.home);
+        email: _emailController.text,
+        password: _passwordController.text,
+        onSuccess: () {
+          status = SignInStatus.done;
+          Navigator.pushReplacementNamed(context, Screens.home);
         },
       );
-      status = SignInStatus.done;
     } catch (e) {
       status = SignInStatus.error;
+      setErrorMessage(e.toString());
     }
+  }
+
+  void setErrorMessage(String value) {
+    print('calling this shit');
+    errorMessage = value;
+    notifyListeners();
+    Future.delayed(const Duration(seconds: 2));
+    errorMessage = null;
+    notifyListeners();
   }
 }
