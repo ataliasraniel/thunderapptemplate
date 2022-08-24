@@ -32,6 +32,8 @@ O template vem com diversos comentários de documentação. Siga-os.
     - Use este package para renderizar imagens SVG em seu projeto.
    ### Image picker
     - API Usada para selecionar arquivos, porém com o refinamento de imagens
+   ### Lottie
+    - Lotties são arquivos personalizados de animações para usar no app.
    ### Dio
     - Cliente HTTP usado para fazer requisições HTTP. Dio é o melhor cliente http para flutter, extremamente fácil de usar
    ### Logging
