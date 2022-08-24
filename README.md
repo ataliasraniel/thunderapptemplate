@@ -28,6 +28,8 @@ O template vem com diversos comentários de documentação. Siga-os.
     - Path provider dá acesso às apis de caminho do os. File system, folders etc. 
    ### File picker
     - API usada para selecionar arquivos que estão nos caminhos do OS
+   ### Flutter Svg
+    - Use este package para renderizar imagens SVG em seu projeto.
    ### Image picker
     - API Usada para selecionar arquivos, porém com o refinamento de imagens
    ### Dio
