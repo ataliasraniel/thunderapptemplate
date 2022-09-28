@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:thunderapp/components/buttons/custom_text_button.dart';
@@ -50,11 +48,7 @@ class SignInScreen extends StatelessWidget {
                       controller: controller.passwordController,
                     ),
                     const VerticalSpacerBox(size: SpacerSize.medium),
-                    controller.status == SignInStatus.loading
-                        ? const CircularProgressIndicator()
-                        : PrimaryButton(
-                            text: 'Continuar',
-                            onPressed: () => controller.signIn(context)),
+                    controller.status == SignInStatus.loading ? const CircularProgressIndicator() : PrimaryButton(text: 'Continuar', onPressed: () => controller.signIn(context)),
                     const VerticalSpacerBox(size: SpacerSize.large),
                     SizedBox(
                       width: size.width,

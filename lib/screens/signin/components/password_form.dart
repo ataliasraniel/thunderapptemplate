@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class PasswordForm extends StatelessWidget {
   const PasswordForm({Key? key, required this.onChanged}) : super(key: key);
@@ -8,9 +6,9 @@ class PasswordForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         labelText: 'Password',
-        labelStyle: const TextStyle(),
+        labelStyle: TextStyle(),
       ),
       onChanged: onChanged,
       obscureText: true,

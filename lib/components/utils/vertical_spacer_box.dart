@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:thunderapp/shared/constants/app_enums.dart';
 import 'package:thunderapp/shared/constants/app_number_constants.dart';
 
@@ -18,7 +16,7 @@ class VerticalSpacerBox extends StatelessWidget {
         return const SizedBox(
           height: kSmallSize,
         );
-      case SpacerSize.medium: 
+      case SpacerSize.medium:
         return const SizedBox(
           height: kMediumSize,
         );
@@ -30,9 +28,10 @@ class VerticalSpacerBox extends StatelessWidget {
         return const SizedBox(
           height: kHugeSize,
         );
-      default: return const SizedBox(
-        height: kSmallSize,
-      );
+      default:
+        return const SizedBox(
+          height: kSmallSize,
+        );
     }
   }
 }

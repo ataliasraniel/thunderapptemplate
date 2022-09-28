@@ -39,7 +39,6 @@ class SignInController with ChangeNotifier {
   }
 
   void setErrorMessage(String value) {
-    print('calling this shit');
     errorMessage = value;
     notifyListeners();
     Future.delayed(const Duration(seconds: 2));

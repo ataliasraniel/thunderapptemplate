@@ -1,17 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:thunderapp/shared/constants/app_number_constants.dart';
 
 class CustomTextFormField extends StatefulWidget {
-  const CustomTextFormField(
-      {Key? key,
-      this.label,
-      this.controller,
-      this.keyboardType,
-      this.hintText,
-      this.isPassword})
-      : super(key: key);
+  const CustomTextFormField({Key? key, this.label, this.controller, this.keyboardType, this.hintText, this.isPassword}) : super(key: key);
   final String? label;
   final String? hintText;
   final TextEditingController? controller;

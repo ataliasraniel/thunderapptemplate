@@ -2,8 +2,7 @@ import 'dart:developer';
 
 class UserStorage {
   // final storage = const FlutterSecureStorage();
-  Future saveUserCredentials(
-      {required String email, required String password}) async {
+  Future saveUserCredentials({required String email, required String password}) async {
     // await storage.write(key: 'email', value: email);
     // await storage.write(key: 'password', value: password);
   }

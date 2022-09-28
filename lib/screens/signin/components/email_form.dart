@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class EmailForm extends StatelessWidget {
   const EmailForm({Key? key, required this.onChanged}) : super(key: key);
@@ -8,9 +6,9 @@ class EmailForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         labelText: 'Email',
-        labelStyle: const TextStyle(),
+        labelStyle: TextStyle(),
       ),
       onChanged: onChanged,
     );

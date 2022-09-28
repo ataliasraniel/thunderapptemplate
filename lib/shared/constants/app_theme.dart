@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:thunderapp/shared/constants/app_enums.dart';
-import 'package:thunderapp/shared/constants/app_enums.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
-import 'package:thunderapp/shared/core/navigator.dart';
 
 class AppTheme with ChangeNotifier {
   CurrentAppTheme _currentAppTheme = CurrentAppTheme.light;
@@ -31,12 +29,8 @@ class AppTheme with ChangeNotifier {
       useMaterial3: true,
       fontFamily: kDefaultFontFamily,
       textTheme: TextTheme(titleMedium: kTitle2.copyWith(color: kTextColor)),
-      inputDecorationTheme: const InputDecorationTheme(
-          hintStyle: kCaption2, labelStyle: kCaption2, counterStyle: kCaption2),
-      appBarTheme: AppBarTheme.of(context).copyWith(
-          iconTheme: const IconThemeData(color: kDetailColor),
-          elevation: 0,
-          backgroundColor: Colors.transparent),
+      inputDecorationTheme: const InputDecorationTheme(hintStyle: kCaption2, labelStyle: kCaption2, counterStyle: kCaption2),
+      appBarTheme: AppBarTheme.of(context).copyWith(iconTheme: const IconThemeData(color: kDetailColor), elevation: 0, backgroundColor: Colors.transparent),
     );
   }
 
@@ -45,11 +39,7 @@ class AppTheme with ChangeNotifier {
         useMaterial3: true,
         scaffoldBackgroundColor: kPrimaryDarkColor,
         cardColor: kSecondaryDarkColor,
-        appBarTheme: const AppBarTheme(
-            backgroundColor: Colors.transparent,
-            titleTextStyle: kBody1,
-            surfaceTintColor: Colors.white,
-            iconTheme: IconThemeData(color: Colors.white)),
+        appBarTheme: const AppBarTheme(backgroundColor: Colors.transparent, titleTextStyle: kBody1, surfaceTintColor: Colors.white, iconTheme: IconThemeData(color: Colors.white)),
         inputDecorationTheme: const InputDecorationTheme(hintStyle: kCaption2),
         textTheme: TextTheme(
           titleMedium: kBody3.copyWith(color: kDarkTextColor),
