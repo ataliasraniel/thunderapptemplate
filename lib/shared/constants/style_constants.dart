@@ -5,18 +5,57 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-/**FONT CONFIGURATION*/
-final kDefaultFontFamily = GoogleFonts.poppins().fontFamily;
-/**COLORS */
-const Color kPrimaryColor = Color.fromARGB(255, 46, 171, 175);
-const Color kBackgroundColor = Color(0xFFF5F5F5);
-const Color kSecondaryColor = Color(0xFF00A8C5);
-const Color kDetailColor = Color.fromARGB(255, 195, 78, 224);
-const Color kOnBackgroundColor = Color.fromARGB(255, 4, 4, 44);
+//**FONT CONFIGURATION*/
+final kDefaultFontFamily = GoogleFonts.fredokaOne().fontFamily;
+final kSecondaryFontFamily = GoogleFonts.nunito().fontFamily;
+final kDescriptionFontFamily = GoogleFonts.firaSans().fontFamily;
+//**LIGHT COLORS */
+const Color kPrimaryColor = Color(0xFFFECA01);
+// const Color kBackgroundColor = Colors.white;
+const Color kBackgroundColor = Color.fromARGB(255, 225, 225, 225);
+const Color kSecondaryColor = Color(0xFF435969);
+const Color kDetailColor = Color(0xFFF87F01);
+const Color kOnBackgroundColor = Color(0xFF212931);
+const Color kTextColor = Color(0xFF435969);
 const Color kOnSurfaceColor = Colors.white;
-const Color kErrorColor = Colors.red;
+const Color kTextButtonColor = Colors.grey;
+//**LIGHT COLORS */
 
-/**TEXT STYLES */
+//**DARK COLORS */
+const Color kPrimaryDarkColor = Color(0xFF303841);
+const Color kSecondaryDarkColor = Color(0xFF3A4750);
+const Color kDarkTextColor = Colors.white;
+//**DARK COLORS */
+
+//*GENERAL COLORS*//
+const Color kSuccessColor = Colors.greenAccent;
+const Color kErrorColor = Colors.redAccent;
+const Color kAlertColor = Colors.orangeAccent;
+//*GENERAL COLORS*//
+
+//**TEXT STYLES */
 const TextStyle kTitle1 = TextStyle(
-    fontSize: 32, fontWeight: FontWeight.w900, color: kOnBackgroundColor);
-const TextStyle kCaption1 = TextStyle(fontSize: 16, color: kErrorColor);
+  fontSize: 28,
+  fontWeight: FontWeight.w900,
+);
+const TextStyle kTitle2 = TextStyle(
+  fontSize: 24,
+  fontWeight: FontWeight.w900,
+);
+const TextStyle kBody1 = TextStyle(
+  fontSize: 20,
+  fontWeight: FontWeight.w900,
+);
+const TextStyle kBody2 = TextStyle(
+  fontSize: 18,
+);
+const TextStyle kBody3 = TextStyle(
+  fontSize: 16,
+);
+const TextStyle kCaption1 = TextStyle(
+  fontSize: 14,
+  fontWeight: FontWeight.w900,
+);
+const TextStyle kCaption2 = TextStyle(
+  fontSize: 14,
+);
