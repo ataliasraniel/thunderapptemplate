@@ -9,6 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 final kDefaultFontFamily = GoogleFonts.fredokaOne().fontFamily;
 final kSecondaryFontFamily = GoogleFonts.nunito().fontFamily;
 final kDescriptionFontFamily = GoogleFonts.firaSans().fontFamily;
+const double kDefaultFontSize = 18;
 //**LIGHT COLORS */
 const Color kPrimaryColor = Color(0xFFFECA01);
 // const Color kBackgroundColor = Colors.white;

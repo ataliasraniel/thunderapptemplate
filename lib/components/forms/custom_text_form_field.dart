@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:thunderapp/shared/constants/app_number_constants.dart';
 
 class CustomTextFormField extends StatefulWidget {
-  const CustomTextFormField({Key? key, this.label, this.controller, this.keyboardType, this.hintText, this.isPassword}) : super(key: key);
+  const CustomTextFormField({Key? key, this.label, this.controller, this.keyboardType, this.hintText, this.isPassword, this.icon}) : super(key: key);
   final String? label;
   final String? hintText;
   final TextEditingController? controller;
   final TextInputType? keyboardType;
   final bool? isPassword;
-
+  final IconData? icon;
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
 }
@@ -36,9 +36,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         obscureText: _obscureText,
         controller: widget.controller,
         decoration: InputDecoration(
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(kDefaultBorderRadius),
-          ),
+          prefixIcon: widget.icon == null ? null : Icon(widget.icon),
           labelText: widget.label,
           filled: true,
           fillColor: Colors.white,

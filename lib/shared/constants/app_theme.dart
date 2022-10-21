@@ -7,6 +7,7 @@ class AppTheme with ChangeNotifier {
   CurrentAppTheme get currentAppTheme => _currentAppTheme;
   ThemeData getCurrentTheme(BuildContext context) {
     if (_currentAppTheme == CurrentAppTheme.light) {
+      print(_currentAppTheme);
       return getLightTheme(context);
     } else {
       return getDarkTheme(context);
@@ -27,8 +28,19 @@ class AppTheme with ChangeNotifier {
     return ThemeData(
       scaffoldBackgroundColor: kBackgroundColor,
       useMaterial3: true,
-      fontFamily: kDefaultFontFamily,
-      textTheme: TextTheme(titleMedium: kTitle2.copyWith(color: kTextColor)),
+      // fontFamily: kDefaultFontFamily,
+      textTheme: TextTheme(
+        titleMedium: kBody3.copyWith(color: kDarkTextColor, fontSize: kDefaultFontSize),
+        titleLarge: kBody3.copyWith(color: kDarkTextColor, fontSize: kDefaultFontSize),
+        bodySmall: kBody2.copyWith(color: kDarkTextColor, fontSize: kDefaultFontSize),
+        bodyLarge: kBody3.copyWith(color: kDarkTextColor, fontSize: kDefaultFontSize),
+        bodyMedium: kBody3.copyWith(color: kDarkTextColor, fontSize: kDefaultFontSize),
+        headlineSmall: kBody3.copyWith(color: kDarkTextColor, fontSize: kDefaultFontSize),
+        headlineMedium: kBody3.copyWith(color: kDarkTextColor, fontSize: kDefaultFontSize),
+        headlineLarge: kBody3.copyWith(color: kDarkTextColor, fontSize: kDefaultFontSize),
+      ),
+      indicatorColor: kPrimaryColor,
+      progressIndicatorTheme: const ProgressIndicatorThemeData(color: kPrimaryColor),
       inputDecorationTheme: const InputDecorationTheme(hintStyle: kCaption2, labelStyle: kCaption2, counterStyle: kCaption2),
       appBarTheme: AppBarTheme.of(context).copyWith(iconTheme: const IconThemeData(color: kDetailColor), elevation: 0, backgroundColor: Colors.transparent),
     );

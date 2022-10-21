@@ -5,6 +5,7 @@ import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:thunderapp/screens/carrousel/carrousel_screen.dart';
 import 'package:thunderapp/screens/screens_index.dart';
 import 'package:thunderapp/shared/constants/app_theme.dart';
+import 'package:thunderapp/shared/core/navigator.dart';
 
 import 'screens/home/home_screen.dart';
 import 'screens/signin/sign_in_screen.dart';
@@ -18,6 +19,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       useInheritedMediaQuery: true,
       locale: DevicePreview.locale(context),
+      navigatorKey: navigatorKey,
       builder: (context, child) {
         return DevicePreview.appBuilder(
             context,
