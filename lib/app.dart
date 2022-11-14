@@ -31,7 +31,7 @@ class App extends StatelessWidget {
       },
       debugShowCheckedModeBanner: false,
       home: const SplashScreen(),
-      theme: context.watch<AppTheme>().getCurrentTheme(context),
+      // theme: context.watch<AppTheme>().getCurrentTheme(context),
       routes: {
         Screens.splash: (BuildContext context) => const SplashScreen(),
         Screens.carrousel: (BuildContext context) => const CarrouselScreen(),
