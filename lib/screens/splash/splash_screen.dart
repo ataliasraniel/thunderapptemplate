@@ -30,7 +30,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
     WidgetsBinding.instance.addPostFrameCallback((_) {
       setController();
       stopController();
-      // _controller.initApplication(() {});
+      _controller.initApplication(() {});
     });
   }
 

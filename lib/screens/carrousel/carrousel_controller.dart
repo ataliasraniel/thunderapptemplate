@@ -3,7 +3,8 @@ import 'package:thunderapp/screens/screens_index.dart';
 import 'package:thunderapp/shared/core/navigator.dart';
 
 class CarrouselScreenController with ChangeNotifier {
-  final PageController _pageController = PageController(initialPage: 0);
+  final PageController _pageController =
+      PageController(initialPage: 0);
   int _currentPageIndex = 0;
   final int _lastPageIndex = 3;
   PageController get pageController => _pageController;
@@ -16,10 +17,12 @@ class CarrouselScreenController with ChangeNotifier {
 
   void nextPage() {
     _currentPageIndex++;
-    changePage(_currentPageIndex);
+    _pageController.nextPage(
+        duration: const Duration(milliseconds: 200),
+        curve: Curves.bounceIn);
     if (isLastPage()) {
-      //you should use the navigator key to change routes
-      Navigator.pushNamed(navigatorKey.currentContext!, Screens.home);
+      Navigator.pushNamed(
+          navigatorKey.currentContext!, Screens.signin);
     }
   }
 
@@ -33,11 +36,13 @@ class CarrouselScreenController with ChangeNotifier {
 
   void previousPage() {
     _currentPageIndex--;
-    changePage(_currentPageIndex);
+    _pageController.previousPage(
+        duration: const Duration(milliseconds: 200),
+        curve: Curves.bounceIn);
   }
 
   void changePage(int index) {
-    _pageController.animateToPage(index, duration: const Duration(milliseconds: 200), curve: Curves.easeInBack);
+    nextPage();
     notifyListeners();
   }
 }

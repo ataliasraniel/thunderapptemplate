@@ -61,17 +61,15 @@ class SplashScreenController {
       navigatorKey.currentState!.pushNamed(Screens.carrousel);
     } else {
       log('User already open app: sign in or home');
-      // FirebaseAuth.instance.authStateChanges().listen((User? user) {
-      //   log('Alright, checking firebase auth user');
-      //   if (user == null) {
-      //     log('User is $user');
-      //     navigatorKey.currentState!
-      //         .pushReplacementNamed(Screens.signin);
-      //   } else {
-      //     navigatorKey.currentState!
-      //         .pushReplacementNamed(Screens.home);
-      //   }
-      // });
+      FirebaseAuth.instance.authStateChanges().listen((User? user) {
+        log('Alright, checking firebase auth user');
+        if (user == null) {
+          log('User is $user');
+          navigatorKey.currentState!.pushReplacementNamed(Screens.signin);
+        } else {
+          navigatorKey.currentState!.pushReplacementNamed(Screens.home);
+        }
+      });
       return;
     }
   }

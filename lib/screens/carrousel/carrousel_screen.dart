@@ -17,7 +17,8 @@ class CarrouselScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (_) => CarrouselScreenController(),
-      builder: (context, child) => Consumer<CarrouselScreenController>(
+      builder: (context, child) =>
+          Consumer<CarrouselScreenController>(
         builder: ((context, controller, child) => Scaffold(
               body: Padding(
                 padding: const EdgeInsets.all(kDefaultPadding),
@@ -28,19 +29,22 @@ class CarrouselScreen extends StatelessWidget {
                       title: 'Olá, bem-vindo ao iEgg',
                       lottiePath: Assets.eggLottie,
                       primaryButtonTitle: 'Começar',
-                      subtitle: 'O iEgg é um app feito especialmente para você que ama usar ovos em suas receitas',
+                      subtitle:
+                          'O iEgg é um app feito especialmente para você que ama usar ovos em suas receitas',
                     ),
                     PageTemplate(
                       title: 'Receita pra tudo!',
                       primaryButtonTitle: 'Próximo',
                       lottiePath: Assets.eggRecipeLottie,
-                      subtitle: 'Aqui você vai encontrat TUDO sobre ovos, as melhores receitas estão aqui. Que paraíso ein?!',
+                      subtitle:
+                          'Aqui você vai encontrat TUDO sobre ovos, as melhores receitas estão aqui. Que paraíso ein?!',
                     ),
                     PageTemplate(
                       title: 'É isso!',
                       primaryButtonTitle: 'Oba!',
                       lottiePath: Assets.eggCrackingLottie,
-                      subtitle: 'Espero de ovocoração que você faça muitas receitinhas. Divirta-se <3',
+                      subtitle:
+                          'Espero de ovocoração que você faça muitas receitinhas. Divirta-se <3',
                     ),
                   ],
                 ),
@@ -95,20 +99,29 @@ class PageTemplate extends StatelessWidget {
             PrimaryButton(
               text: primaryButtonTitle,
               onPressed: () {
-                context.read<CarrouselScreenController>().nextPage();
+                context
+                    .read<CarrouselScreenController>()
+                    .nextPage();
               },
             ),
             const VerticalSpacerBox(size: SpacerSize.small),
-            context.watch<CarrouselScreenController>().currentPageIndex > 1
+            context
+                        .watch<CarrouselScreenController>()
+                        .currentPageIndex >
+                    1
                 ? CustomTextButton(
                     title: 'Voltar',
                     onPressed: () {
-                      context.read<CarrouselScreenController>().previousPage();
+                      context
+                          .read<CarrouselScreenController>()
+                          .previousPage();
                     })
                 : CustomTextButton(
                     title: 'Pular',
                     onPressed: () {
-                      context.read<CarrouselScreenController>().changePageIndex(2);
+                      context
+                          .read<CarrouselScreenController>()
+                          .changePageIndex(2);
                     }),
           ],
         )
