@@ -1,10 +1,9 @@
-const double kDefaultPadding = 32.0;
-
+const double kDefaultPadding = 28.0;
 
 const double kDefaultBorderRadius = 8.0;
 
-const double kTinySize = 8;
-const double kSmallSize = 12;
-const double kMediumSize = 16;
-const double kLargeSize = 24;
-const double kHugeSize = 32;
+const double kTinySize = 4;
+const double kSmallSize = 8;
+const double kMediumSize = 14;
+const double kLargeSize = 18;
+const double kHugeSize = 28;

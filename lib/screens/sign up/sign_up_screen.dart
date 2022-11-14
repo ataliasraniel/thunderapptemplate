@@ -1,220 +1,162 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:thunderapp/components/buttons/custom_text_button.dart';
-import 'package:thunderapp/components/buttons/primary_button.dart';
-import 'package:thunderapp/components/forms/custom_text_form_field.dart';
-import 'package:thunderapp/components/utils/vertical_spacer_box.dart';
 import 'package:thunderapp/screens/sign%20up/sign_up_controller.dart';
-import 'package:thunderapp/screens/signin/sign_in_controller.dart';
 import 'package:thunderapp/shared/constants/app_number_constants.dart';
-import 'package:thunderapp/shared/constants/style_constants.dart';
 
+import '../../components/buttons/primary_button.dart';
+import '../../components/forms/custom_text_form_field.dart';
+import '../../components/utils/vertical_spacer_box.dart';
 import '../../shared/constants/app_enums.dart';
+import '../../shared/constants/style_constants.dart';
 
-class SignUpScreen extends StatelessWidget {
+class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
 
   @override
+  State<SignUpScreen> createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<SignUpScreen> {
+  final _signUpKey = GlobalKey<FormState>();
+  @override
   Widget build(BuildContext context) {
-    /**Declare this variable to get the Media Query of the screen in the current context */
     Size size = MediaQuery.of(context).size;
-    return MultiProvider(
-        providers: [
-          ChangeNotifierProvider(
-              create: (_) => SignUpController()),
-        ],
-        builder: (context, child) {
-          return Consumer<SignUpController>(
-            builder: (context, controller, child) =>
-                Scaffold(
-              appBar: AppBar(),
-              backgroundColor: kPrimaryColor,
-              body: Stack(
-                children: [
-                  Container(
-                    width: size.width,
-                    margin: EdgeInsets.only(
-                        top: size.height * 0.3),
-                    padding: const EdgeInsets.all(
-                        kDefaultPadding),
-                    decoration: BoxDecoration(
-                        color: kBackgroundColor,
-                        borderRadius:
-                            BorderRadius.circular(30)),
-                    child: Column(
-                      mainAxisAlignment:
-                          MainAxisAlignment.center,
-                      crossAxisAlignment:
-                          CrossAxisAlignment.start,
-                      children: [
-                        const Spacer(),
-                        Center(
-                          child: Text(
-                            controller.infoIndex == 0
-                                ? 'Cadastro'
-                                : 'Endereço',
-                            style: kTitle1.copyWith(
-                                fontWeight:
-                                    FontWeight.bold),
-                          ),
-                        ),
-                        const VerticalSpacerBox(
-                            size: SpacerSize.huge),
-                        Form(
-                          child: Column(
-                            children: controller
-                                        .infoIndex ==
-                                    0
-                                ? [
-                                    CustomTextFormField(
-                                      hintText: 'Nome',
-                                      icon: Icons.person,
-                                      controller: controller
-                                          .emailController,
-                                    ),
-                                    const VerticalSpacerBox(
-                                        size: SpacerSize
-                                            .small),
-                                    CustomTextFormField(
-                                      hintText: 'E-mail',
-                                      icon: Icons.email,
-                                      controller: controller
-                                          .passwordController,
-                                    ),
-                                    const VerticalSpacerBox(
-                                        size: SpacerSize
-                                            .small),
-                                    CustomTextFormField(
-                                      hintText: 'Senha',
-                                      isPassword: true,
-                                      icon: Icons.lock,
-                                      controller: controller
-                                          .passwordController,
-                                    ),
-                                    const VerticalSpacerBox(
-                                        size: SpacerSize
-                                            .small),
-                                    CustomTextFormField(
-                                      hintText: 'Telefone',
-                                      icon: Icons.phone,
-                                      controller: controller
-                                          .passwordController,
-                                    ),
-                                  ]
-                                : [
-                                    CustomTextFormField(
-                                      hintText: 'Rua',
-                                      icon: Icons
-                                          .location_city,
-                                      controller: controller
-                                          .emailController,
-                                    ),
-                                    const VerticalSpacerBox(
-                                        size: SpacerSize
-                                            .small),
-                                    CustomTextFormField(
-                                      hintText: 'CEP',
-                                      icon: Icons
-                                          .numbers_outlined,
-                                      controller: controller
-                                          .passwordController,
-                                    ),
-                                    const VerticalSpacerBox(
-                                        size: SpacerSize
-                                            .small),
-                                    CustomTextFormField(
-                                      hintText: 'Cidade',
-                                      icon: Icons
-                                          .location_city_rounded,
-                                      controller: controller
-                                          .passwordController,
-                                    ),
-                                    const VerticalSpacerBox(
-                                        size: SpacerSize
-                                            .small),
-                                    CustomTextFormField(
-                                      hintText: 'Número',
-                                      icon:
-                                          Icons.home_filled,
-                                      controller: controller
-                                          .passwordController,
-                                    ),
-                                  ],
-                          ),
-                        ),
-                        const VerticalSpacerBox(
-                            size: SpacerSize.huge),
-                        controller.screenState ==
-                                ScreenState.loading
-                            ? const CircularProgressIndicator()
-                            : PrimaryButton(
-                                text: 'Próximo',
-                                onPressed: () {
-                                  controller.next();
-                                }),
-                        const VerticalSpacerBox(
-                            size: SpacerSize.large),
-                        controller.infoIndex != 0
-                            ? Center(
-                                child: CustomTextButton(
-                                    onPressed: () =>
-                                        controller.back(),
-                                    title: 'Anterior'),
-                              )
-                            : const SizedBox(),
-                        SizedBox(
-                          width: size.width,
-                          child: Column(
-                            crossAxisAlignment:
-                                CrossAxisAlignment.center,
-                            children: <Widget>[
-                              controller.errorMessage !=
-                                      null
-                                  ? Text(
-                                      controller
-                                          .errorMessage!,
-                                      style: kCaption1,
-                                    )
-                                  : const SizedBox(),
+    return ChangeNotifierProvider(
+      create: (_) => SignUpScreenController(),
+      builder: ((context, child) =>
+          Consumer<SignUpScreenController>(
+            builder: (context, controller, child) => Scaffold(
+              appBar: controller.stepIndex != controller.maxSteps
+                  ? AppBar()
+                  : null,
+              body: Form(
+                key: _signUpKey,
+                child: Container(
+                  width: size.width,
+                  padding: const EdgeInsets.all(kDefaultPadding),
+                  child: controller.stepIndex != controller.maxSteps
+                      ? Column(
+                          mainAxisAlignment:
+                              MainAxisAlignment.center,
+                          crossAxisAlignment:
+                              CrossAxisAlignment.start,
+                          children: [
+                              const Text(
+                                'Quer se cadastrar? Vamos lá!',
+                                style: kTitle1,
+                              ),
                               const VerticalSpacerBox(
                                   size: SpacerSize.small),
-                              controller.infoIndex == 0
-                                  ? CustomTextButton(
-                                      title:
-                                          'Já tenho conta',
-                                      onPressed: () {},
+                              Text(
+                                controller.stepIndex == 1
+                                    ? 'Primeiro, me diz seu email'
+                                    : 'Ótimo, agora crie uma senha beeem bacana',
+                                style: kBody3.copyWith(
+                                    color: kTextColor),
+                              ),
+                              const VerticalSpacerBox(
+                                  size: SpacerSize.small),
+                              controller.stepIndex == 1
+                                  ? CustomTextFormField(
+                                      hintText:
+                                          'exemplo@exemplo.com',
+                                      controller: controller
+                                          .emailTextEditingController,
                                     )
-                                  : const SizedBox(),
-                            ],
-                          ),
+                                  : CustomTextFormField(
+                                      hintText:
+                                          'Criatividade, ein?!',
+                                      isPassword: true,
+                                      controller: controller
+                                          .passwordTextEditingController,
+                                    ),
+                              const VerticalSpacerBox(
+                                  size: SpacerSize.small),
+                              const VerticalSpacerBox(
+                                  size: SpacerSize.medium),
+                              const Spacer(),
+                              Center(
+                                  child: Text.rich(
+                                      style: kCaption1,
+                                      TextSpan(children: [
+                                        const TextSpan(
+                                          text: 'Passo ',
+                                        ),
+                                        TextSpan(
+                                            text: controller
+                                                .stepIndex
+                                                .toString(),
+                                            style: kCaption1.copyWith(
+                                                color:
+                                                    kDetailColor)),
+                                        const TextSpan(
+                                            text: ' de '),
+                                        TextSpan(
+                                            text: controller
+                                                .maxSteps
+                                                .toString())
+                                      ]))),
+                              const VerticalSpacerBox(
+                                  size: SpacerSize.small),
+                              controller.stepIndex == 1
+                                  ? PrimaryButton(
+                                      text: 'Próximo',
+                                      onPressed: () {
+                                        if (_signUpKey.currentState!
+                                            .validate()) {
+                                          controller.nextStep();
+                                        }
+                                      })
+                                  : controller.screenState ==
+                                          ScreenState.loading
+                                      ? const Center(
+                                          child:
+                                              CircularProgressIndicator(),
+                                        )
+                                      : PrimaryButton(
+                                          text: 'Finalizar',
+                                          onPressed: () {
+                                            if (_signUpKey
+                                                .currentState!
+                                                .validate()) {
+                                              controller
+                                                  .finishSignUp();
+                                            }
+                                          }),
+                            ])
+                      : Column(
+                          crossAxisAlignment:
+                              CrossAxisAlignment.center,
+                          mainAxisAlignment:
+                              MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text(
+                              'AEEE!!! Você é o mais novo usuário do iEgg!',
+                              textAlign: TextAlign.center,
+                              style: kTitle1.copyWith(
+                                  color: kDetailColor),
+                            ),
+                            const VerticalSpacerBox(
+                                size: SpacerSize.medium),
+                            Text(
+                              'Agora é só você fazer login e confirmar tudo. Bem-vindo! ',
+                              textAlign: TextAlign.center,
+                              style: kBody1.copyWith(
+                                  color: kTextColor),
+                            ),
+                            const VerticalSpacerBox(
+                                size: SpacerSize.medium),
+                            // PrimaryButton(
+                            //     text: 'Maravilha!',
+                            //     onPressed: () {
+                            //       navigatorKey.currentState!.pop();
+                            //     })
+                          ],
                         ),
-                        const Spacer(),
-                      ],
-                    ),
-                  ),
-                  Column(
-                    mainAxisAlignment:
-                        MainAxisAlignment.center,
-                    children: [
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Text(
-                          textAlign: TextAlign.center,
-                          'Bem-vindo(a) ao App Bonito Produtor',
-                          style: kTitle1.copyWith(
-                              color: kBackgroundColor),
-                        ),
-                      ),
-                      SizedBox(
-                        height: size.height * 0.5,
-                      )
-                    ],
-                  ),
-                ],
+                ),
               ),
             ),
-          );
-        });
+          )),
+    );
   }
 }

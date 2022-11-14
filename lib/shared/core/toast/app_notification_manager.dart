@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:thunderapp/shared/constants/app_enums.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
 
-class AppNotificationManager {
-  static void showSimpleNotification(NotificationType type,
-      [String? title]) {
+class AppSnackbarManager {
+  static void showSimpleNotification(NotificationType type, [String? title]) {
     Color typeColor;
     String notificationTitle;
 
@@ -28,10 +27,6 @@ class AppNotificationManager {
         typeColor = kSuccessColor;
         notificationTitle = 'Sucesso! 🥚';
     }
-    BotToast.showSimpleNotification(
-        titleStyle: kCaption2.copyWith(color: Colors.white),
-        hideCloseButton: true,
-        title: title ?? notificationTitle,
-        backgroundColor: typeColor);
+    BotToast.showSimpleNotification(titleStyle: kCaption2.copyWith(color: Colors.white), hideCloseButton: true, title: title ?? notificationTitle, backgroundColor: typeColor);
   }
 }

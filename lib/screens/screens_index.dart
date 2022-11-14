@@ -6,5 +6,11 @@ class Screens {
   static const String home = '/home';
   static const String splash = '/splash';
   static const String signin = '/sign_in';
+  static const String signup = '/signup';
   static const String carrousel = '/carrousel';
+
+  static const String eggTimer = 'home/eggtimer';
+  static const String eggNutrition = 'home/eggnutrition';
+
+  static const String recipeView = '/recipeview';
 }

@@ -1,13 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:thunderapp/shared/constants/app_enums.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
+import 'package:thunderapp/shared/core/preferences_manager.dart';
 
 class AppTheme with ChangeNotifier {
   CurrentAppTheme _currentAppTheme = CurrentAppTheme.light;
   CurrentAppTheme get currentAppTheme => _currentAppTheme;
   ThemeData getCurrentTheme(BuildContext context) {
+    PreferencesManager.getTheme().then((value) {
+      if (value) {
+        _currentAppTheme = CurrentAppTheme.dark;
+        notifyListeners();
+      } else {
+        _currentAppTheme = CurrentAppTheme.light;
+      }
+    }).catchError((e) {
+      _currentAppTheme = CurrentAppTheme.light;
+    });
     if (_currentAppTheme == CurrentAppTheme.light) {
-      print(_currentAppTheme);
       return getLightTheme(context);
     } else {
       return getDarkTheme(context);
@@ -22,25 +32,15 @@ class AppTheme with ChangeNotifier {
       _currentAppTheme = CurrentAppTheme.light;
       notifyListeners();
     }
+    PreferencesManager.saveTheme(_currentAppTheme == CurrentAppTheme.dark ? true : false);
   }
 
   static ThemeData getLightTheme(BuildContext context) {
     return ThemeData(
       scaffoldBackgroundColor: kBackgroundColor,
       useMaterial3: true,
-      // fontFamily: kDefaultFontFamily,
-      textTheme: TextTheme(
-        titleMedium: kBody3.copyWith(color: kDarkTextColor, fontSize: kDefaultFontSize),
-        titleLarge: kBody3.copyWith(color: kDarkTextColor, fontSize: kDefaultFontSize),
-        bodySmall: kBody2.copyWith(color: kDarkTextColor, fontSize: kDefaultFontSize),
-        bodyLarge: kBody3.copyWith(color: kDarkTextColor, fontSize: kDefaultFontSize),
-        bodyMedium: kBody3.copyWith(color: kDarkTextColor, fontSize: kDefaultFontSize),
-        headlineSmall: kBody3.copyWith(color: kDarkTextColor, fontSize: kDefaultFontSize),
-        headlineMedium: kBody3.copyWith(color: kDarkTextColor, fontSize: kDefaultFontSize),
-        headlineLarge: kBody3.copyWith(color: kDarkTextColor, fontSize: kDefaultFontSize),
-      ),
-      indicatorColor: kPrimaryColor,
-      progressIndicatorTheme: const ProgressIndicatorThemeData(color: kPrimaryColor),
+      fontFamily: kDefaultFontFamily,
+      textTheme: TextTheme(titleMedium: kTitle2.copyWith(color: kTextColor)),
       inputDecorationTheme: const InputDecorationTheme(hintStyle: kCaption2, labelStyle: kCaption2, counterStyle: kCaption2),
       appBarTheme: AppBarTheme.of(context).copyWith(iconTheme: const IconThemeData(color: kDetailColor), elevation: 0, backgroundColor: Colors.transparent),
     );

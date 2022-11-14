@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:thunderapp/shared/constants/app_number_constants.dart';
+import 'package:thunderapp/shared/constants/style_constants.dart';
 
 class CustomTextFormField extends StatefulWidget {
-  const CustomTextFormField({Key? key, this.label, this.controller, this.keyboardType, this.hintText, this.isPassword, this.icon}) : super(key: key);
+  const CustomTextFormField({Key? key, this.label, this.controller, this.keyboardType, this.hintText, this.isPassword}) : super(key: key);
   final String? label;
   final String? hintText;
   final TextEditingController? controller;
   final TextInputType? keyboardType;
   final bool? isPassword;
-  final IconData? icon;
+
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
 }
@@ -35,8 +36,19 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       child: TextFormField(
         obscureText: _obscureText,
         controller: widget.controller,
+        validator: (value) {
+          if (value == null || value.length <= 6 || value.isEmpty) {
+            return 'Digite algo válido.';
+          }
+          return null;
+        },
+        style: kCaption2,
         decoration: InputDecoration(
-          prefixIcon: widget.icon == null ? null : Icon(widget.icon),
+          contentPadding: const EdgeInsets.symmetric(horizontal: kMediumSize, vertical: kSmallSize),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(kDefaultBorderRadius),
+          ),
+          focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: kDetailColor)),
           labelText: widget.label,
           filled: true,
           fillColor: Colors.white,
@@ -46,6 +58,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                   onTap: () => _toggleVisibility(),
                   child: Icon(
                     _obscureText ? Icons.visibility : Icons.visibility_off,
+                    color: kDetailColor,
                   ),
                 )
               : null,

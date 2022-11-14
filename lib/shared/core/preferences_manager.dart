@@ -11,6 +11,20 @@ class PreferencesManager {
     }
   }
 
+  static void saveTheme(bool theme) async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setBool('isDarkTheme', theme);
+  }
+
+  static Future<bool> getTheme() async {
+    final prefs = await SharedPreferences.getInstance();
+    try {
+      return prefs.getBool('isDarkTheme')!;
+    } catch (e) {
+      return false;
+    }
+  }
+
   static void resetAllPreferences() async {
     final prefs = await SharedPreferences.getInstance();
     prefs.clear();
