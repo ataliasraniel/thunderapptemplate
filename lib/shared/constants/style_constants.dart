@@ -6,16 +6,16 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 //**FONT CONFIGURATION*/
-final kDefaultFontFamily = GoogleFonts.fredokaOne().fontFamily;
+final kDefaultFontFamily = GoogleFonts.poppins().fontFamily;
 final kSecondaryFontFamily = GoogleFonts.nunito().fontFamily;
 final kDescriptionFontFamily = GoogleFonts.firaSans().fontFamily;
 //**LIGHT COLORS */
-const Color kPrimaryColor = Color(0xFFFECA01);
+const Color kPrimaryColor = Color(0xFFE57C19);
 // const Color kBackgroundColor = Colors.white;
 const Color kBackgroundColor = Color.fromARGB(255, 225, 225, 225);
 const Color kSecondaryColor = Color(0xFF435969);
 const Color kDetailColor = Color(0xFFF87F01);
-const Color kOnBackgroundColor = Color(0xFF212931);
+const Color kOnBackgroundColor = Colors.white;
 const Color kTextColor = Color(0xFF435969);
 const Color kOnSurfaceColor = Colors.white;
 const Color kTextButtonColor = Colors.grey;

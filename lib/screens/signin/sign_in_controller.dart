@@ -30,6 +30,14 @@ class SignInController with ChangeNotifier {
   TextEditingController get passwordController => _passwordController;
   var status = SignInStatus.idle;
 
+  Future signInAnonimously() async {
+    status = SignInStatus.loading;
+    FirebaseAuth.instance.signInAnonymously().then((value) => navigatorKey.currentState!.pushReplacementNamed(Screens.home)).catchError((e) {
+      setErrorMessage(e);
+    });
+    notifyListeners();
+  }
+
   Future<UserCredential> signInWithGoogle() async {
     // Trigger the authentication flow
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn().catchError((e) {

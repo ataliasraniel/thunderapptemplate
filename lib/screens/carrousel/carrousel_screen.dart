@@ -17,8 +17,7 @@ class CarrouselScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (_) => CarrouselScreenController(),
-      builder: (context, child) =>
-          Consumer<CarrouselScreenController>(
+      builder: (context, child) => Consumer<CarrouselScreenController>(
         builder: ((context, controller, child) => Scaffold(
               body: Padding(
                 padding: const EdgeInsets.all(kDefaultPadding),
@@ -26,25 +25,22 @@ class CarrouselScreen extends StatelessWidget {
                   controller: controller.pageController,
                   children: const [
                     PageTemplate(
-                      title: 'Olá, bem-vindo ao iEgg',
+                      title: 'Olá, bem-vindo ao Aplicativo do Diretório Acadêmico de Letras',
                       lottiePath: Assets.eggLottie,
                       primaryButtonTitle: 'Começar',
-                      subtitle:
-                          'O iEgg é um app feito especialmente para você que ama usar ovos em suas receitas',
+                      subtitle: 'Subtítulo do carrossel',
                     ),
                     PageTemplate(
                       title: 'Receita pra tudo!',
                       primaryButtonTitle: 'Próximo',
                       lottiePath: Assets.eggRecipeLottie,
-                      subtitle:
-                          'Aqui você vai encontrat TUDO sobre ovos, as melhores receitas estão aqui. Que paraíso ein?!',
+                      subtitle: 'Aqui você vai encontrat TUDO sobre ovos, as melhores receitas estão aqui. Que paraíso ein?!',
                     ),
                     PageTemplate(
                       title: 'É isso!',
                       primaryButtonTitle: 'Oba!',
                       lottiePath: Assets.eggCrackingLottie,
-                      subtitle:
-                          'Espero de ovocoração que você faça muitas receitinhas. Divirta-se <3',
+                      subtitle: 'Espero de ovocoração que você faça muitas receitinhas. Divirta-se <3',
                     ),
                   ],
                 ),
@@ -76,17 +72,19 @@ class PageTemplate extends StatelessWidget {
         Text(
           '${context.watch<CarrouselScreenController>().currentPageIndex}/3',
           style: kBody1,
+          textAlign: TextAlign.center,
         ),
         const Spacer(),
         Text(
           title,
           style: kTitle2,
+          textAlign: TextAlign.center,
         ),
         const VerticalSpacerBox(size: SpacerSize.small),
-        LottieBuilder.asset(
-          lottiePath,
-          width: 220,
-        ),
+        // LottieBuilder.asset(
+        //   lottiePath,
+        //   width: 220,
+        // ),
         const VerticalSpacerBox(size: SpacerSize.small),
         Text(
           subtitle,
@@ -99,29 +97,20 @@ class PageTemplate extends StatelessWidget {
             PrimaryButton(
               text: primaryButtonTitle,
               onPressed: () {
-                context
-                    .read<CarrouselScreenController>()
-                    .nextPage();
+                context.read<CarrouselScreenController>().nextPage();
               },
             ),
             const VerticalSpacerBox(size: SpacerSize.small),
-            context
-                        .watch<CarrouselScreenController>()
-                        .currentPageIndex >
-                    1
+            context.watch<CarrouselScreenController>().currentPageIndex > 1
                 ? CustomTextButton(
                     title: 'Voltar',
                     onPressed: () {
-                      context
-                          .read<CarrouselScreenController>()
-                          .previousPage();
+                      context.read<CarrouselScreenController>().previousPage();
                     })
                 : CustomTextButton(
                     title: 'Pular',
                     onPressed: () {
-                      context
-                          .read<CarrouselScreenController>()
-                          .changePageIndex(2);
+                      context.read<CarrouselScreenController>().changePageIndex(2);
                     }),
           ],
         )

@@ -16,7 +16,7 @@ main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  SharedPreferences.getInstance().then((value) => value.clear());
+  // SharedPreferences.getInstance().then((value) => value.clear());
   tz.initializeTimeZones();
   Logger.root.level = Level.ALL; // defaults to Level.INFO
   Logger.root.onRecord.listen((record) {});

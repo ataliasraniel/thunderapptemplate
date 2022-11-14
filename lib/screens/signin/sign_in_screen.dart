@@ -44,19 +44,19 @@ class _SignInScreenState extends State<SignInScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Spacer(),
-                      Center(
-                          child: Image.asset(
-                        Assets.logo,
-                        width: 68,
-                      )),
-                      const VerticalSpacerBox(size: SpacerSize.medium),
+                      // Center(
+                      //     child: Image.asset(
+                      //   Assets.logo,
+                      //   width: 68,
+                      // )),
+                      const VerticalSpacerBox(size: SpacerSize.large),
                       const Text(
                         'Olá, bem-vinde. Faça seu login para continuar',
                         style: kTitle2,
                       ),
-                      const VerticalSpacerBox(size: SpacerSize.small),
+                      const VerticalSpacerBox(size: SpacerSize.large),
                       CustomTextFormField(
-                        hintText: 'atalias@email.com',
+                        hintText: 'email@email.com',
                         controller: controller.emailController,
                       ),
                       const VerticalSpacerBox(size: SpacerSize.small),
@@ -89,7 +89,9 @@ class _SignInScreenState extends State<SignInScreen> {
                                   )
                                 : const SizedBox(),
                             const Divider(),
+                            ElevatedButton.icon(onPressed: () => controller.signInAnonimously(), icon: const Icon(Icons.person), label: const Text('Continuar como Anônimo')),
                             ElevatedButton.icon(onPressed: () async => controller.signInWithGoogle(), icon: const SvgPicRenderer(filePath: Assets.google, width: 26), label: const Text('Continuar com Google')),
+                            const VerticalSpacerBox(size: SpacerSize.medium),
                             const Text('ou'),
                             CustomTextButton(
                               title: 'Cadastre-se',
