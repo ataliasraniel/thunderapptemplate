@@ -16,8 +16,7 @@ class SplashScreenController {
   final BuildContext context;
   bool isFirstTime = false;
   SplashScreenController(this.context);
-  final Logger _logger = Logger(
-      'Splash screen logger'); //a logger is always good to have
+  final Logger _logger = Logger('Splash screen logger'); //a logger is always good to have
   final userStorage = UserStorage();
 
   ///this class is binded with SplashScreen widget and should be used
@@ -62,17 +61,17 @@ class SplashScreenController {
       navigatorKey.currentState!.pushNamed(Screens.carrousel);
     } else {
       log('User already open app: sign in or home');
-      FirebaseAuth.instance.authStateChanges().listen((User? user) {
-        log('Alright, checking firebase auth user');
-        if (user == null) {
-          log('User is $user');
-          navigatorKey.currentState!
-              .pushReplacementNamed(Screens.signin);
-        } else {
-          navigatorKey.currentState!
-              .pushReplacementNamed(Screens.home);
-        }
-      });
+      // FirebaseAuth.instance.authStateChanges().listen((User? user) {
+      //   log('Alright, checking firebase auth user');
+      //   if (user == null) {
+      //     log('User is $user');
+      //     navigatorKey.currentState!
+      //         .pushReplacementNamed(Screens.signin);
+      //   } else {
+      //     navigatorKey.currentState!
+      //         .pushReplacementNamed(Screens.home);
+      //   }
+      // });
       return;
     }
   }

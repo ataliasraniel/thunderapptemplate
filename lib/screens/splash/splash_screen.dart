@@ -18,21 +18,19 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen>
-    with SingleTickerProviderStateMixin {
+class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin {
   late final SplashScreenController _controller;
   late final AnimationController animController;
   double opacity = 0;
   @override
   void initState() {
     super.initState();
-    animController = AnimationController(
-        vsync: this, duration: const Duration(seconds: 2));
+    animController = AnimationController(vsync: this, duration: const Duration(seconds: 2));
     _controller = SplashScreenController(context);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       setController();
       stopController();
-      _controller.initApplication(() {});
+      // _controller.initApplication(() {});
     });
   }
 
@@ -72,16 +70,8 @@ class _SplashScreenState extends State<SplashScreen>
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Lottie.asset(
-                    width: 220,
-                    height: 220,
-                    controller: animController,
-                    Assets.introLottie,
-                    fit: BoxFit.fill),
-                AnimatedOpacity(
-                    duration: const Duration(milliseconds: 200),
-                    opacity: opacity,
-                    child: const Text('Delivering Eggexperience')),
+                Lottie.asset(width: 220, height: 220, controller: animController, Assets.introLottie, fit: BoxFit.fill),
+                AnimatedOpacity(duration: const Duration(milliseconds: 200), opacity: opacity, child: const Text('Delivering Eggexperience')),
                 const VerticalSpacerBox(size: SpacerSize.huge)
               ],
             ),
